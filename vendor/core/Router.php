@@ -55,23 +55,20 @@ class Router
         $url = self::removeQueryString($url);
         if(self::matchRoute($url))
         {
-            $controller = 'app\controller\\' . self::upperCamelCase(self::$route['controller']);
-            if(class_exists($controller))
-            {
-                $cObj = new $controller(self::$route);
+            $controller = 'app\controller\\' . self::upperCamelCase(self::$route['controller']);//added
+            if(class_exists($controller)) {
+                $cObj = new $controller(self::$route);//added
                 $action = self::lowerCamelCase(self::$route['action']) . 'Action';
                 if(method_exists($cObj, $action)) {
                     $cObj->$action();
-                } else
-                {
+                    $cObj->getView();
+                } else {
                     echo " Метод <b> $controller::$action <b> не найден!";
                 }
-            } else
-            {
+            } else {
                 echo " Контроллер <b> $controller <b> не найден!";
             }
-        } else
-        {
+        } else {
             http_response_code(404);
             include '404.html';
         }

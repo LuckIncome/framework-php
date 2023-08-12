@@ -9,6 +9,7 @@ define('WWW', __DIR__);
 define('CORE', dirname(__DIR__) . '/vendor/core');
 define('ROOT', dirname(__DIR__));
 define('APP', dirname(__DIR__) . '/app');
+define('LAYOUT', 'default');
 
 require '../vendor/libs/functions.php';
 
@@ -21,7 +22,5 @@ spl_autoload_register(function($class) {
 
 Router::add('^page/(?P<action>[a-z-]+)/(?P<alias>[a-z-]+)$', ['controller' => 'Page']);
 Router::add('^page/(?P<alias>[a-z-]+)$', ['controller' => 'Page', 'action' => 'view']);
-
-debug(Router::getRoutes());
 
 Router::dispatch($query);

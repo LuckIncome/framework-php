@@ -2,10 +2,24 @@
 
 namespace app\controllers;
 
-class Main
+class Main extends App
 {
-    public function __construct()
+    //public $layout = 'main';
+
+    public function indexAction()
     {
-        echo "Main::__construct";
+        //$this->layout = false;
+        //$this->layout = 'main';
+        //$this->view = 'test';
+        //$name = 'Андрей';
+        //$this->set(['name' => $name, 'hi' => 'Hello']);
+
+        $name = 'Андрей';
+        $hi = 'Hello';
+        $colors = [
+            'white' => 'белый',
+            'black' => 'черный'
+        ];
+        $this->set(compact('name', 'hi', 'colors'));
     }
 }
