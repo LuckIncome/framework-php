@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Авг 17 2023 г., 12:38
--- Версия сервера: 8.0.30
--- Версия PHP: 8.0.22
+-- Время создания: Сен 03 2018 г., 16:07
+-- Версия сервера: 5.7.20
+-- Версия PHP: 7.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -24,23 +25,76 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `categories`
+--
+
+CREATE TABLE `categories` (
+                              `id` int(10) UNSIGNED NOT NULL,
+                              `title` varchar(255) NOT NULL,
+                              `parent` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `categories`
+--
+
+INSERT INTO `categories` (`id`, `title`, `parent`) VALUES
+                                                       (685, 'Комплектующие к Apple', 0),
+                                                       (691, 'Запчасти iPad', 685),
+                                                       (692, 'Запчасти iPhone', 685),
+                                                       (693, 'Запчасти iPod', 685),
+                                                       (694, 'Запчасти Mac', 685),
+                                                       (695, 'iPad', 691),
+                                                       (696, 'iPad 2', 691),
+                                                       (697, 'iPad NEW (iPad 3)', 691),
+                                                       (698, 'iPad 4', 691),
+                                                       (699, 'iPad mini', 691),
+                                                       (700, 'iPhone', 692),
+                                                       (701, 'iPhone 3G/3GS', 692),
+                                                       (702, 'iPhone 4', 692),
+                                                       (703, 'iPhone 4S', 692),
+                                                       (704, 'iPhone 5', 692),
+                                                       (705, 'Микросхемы Apple', 685),
+                                                       (836, 'Защитные плёнки на Apple', 0),
+                                                       (840, 'iPad', 836),
+                                                       (841, 'iPhone', 836),
+                                                       (842, 'iPod', 836),
+                                                       (843, 'Mac', 836),
+                                                       (853, 'Оборудование для ремонта Apple', 0),
+                                                       (876, 'Аксессуары для Apple', 0),
+                                                       (877, 'Аксессуары iPad', 876),
+                                                       (878, 'Аксессуары iPhone', 876),
+                                                       (879, 'Аксессуары iPod', 876),
+                                                       (880, 'Аксессуары Mac', 876),
+                                                       (881, 'iPad', 877),
+                                                       (882, 'iPad 2', 877),
+                                                       (883, 'iPad NEW 3 / iPad 4', 877),
+                                                       (884, 'iPad mini', 877),
+                                                       (885, 'iPhone 3G / 3GS', 878),
+                                                       (886, 'iPhone 4 / 4S', 878),
+                                                       (887, 'iPhone 5', 878),
+                                                       (888, 'Аксессуары для Apple', 876),
+                                                       (895, 'iPhone 5 Lamborghini', 878);
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `category`
 --
 
 CREATE TABLE `category` (
-  `id` int NOT NULL,
-  `title` varchar(255) COLLATE utf8mb3_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+                            `id` int(11) UNSIGNED NOT NULL,
+                            `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `category`
 --
 
 INSERT INTO `category` (`id`, `title`) VALUES
-(1, 'test'),
-(2, 'test1'),
-(3, 'test2'),
-(4, 'test2');
+                                           (1, 'Категория 1'),
+                                           (2, 'Категория 2'),
+                                           (3, 'Категория 3');
 
 -- --------------------------------------------------------
 
@@ -49,51 +103,63 @@ INSERT INTO `category` (`id`, `title`) VALUES
 --
 
 CREATE TABLE `posts` (
-  `id` int UNSIGNED NOT NULL DEFAULT '0',
-  `category_id` int UNSIGNED NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `excerpt` varchar(255) NOT NULL,
-  `text` text NOT NULL,
-  `keywords` varchar(255) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+                         `id` int(10) UNSIGNED NOT NULL DEFAULT '0',
+                         `category_id` int(10) UNSIGNED NOT NULL,
+                         `title` varchar(255) NOT NULL,
+                         `excerpt` varchar(255) NOT NULL,
+                         `text` text NOT NULL,
+                         `keywords` varchar(255) DEFAULT NULL,
+                         `description` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `posts`
 --
 
 INSERT INTO `posts` (`id`, `category_id`, `title`, `excerpt`, `text`, `keywords`, `description`) VALUES
-(1, 2, 'Адаптивный дизайн сайта и основные стратегии по его внедрению', 'Адаптивный дизайн сайта — это совершенно новый подход к дизайну, который привлекает к себе все больше внимания, но, учитывая, насколько сильно он отличается от традиционных методов разработки, вначале он может показаться заоблачно сложным для начинающих в', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia optio odit unde quam dolore vel vitae in! Obcaecati velit rem alias exercitationem error eveniet autem, voluptatibus esse ab placeat blanditiis omnis! Necessitatibus, officia velit, laboriosam deleniti quis aperiam? Nesciunt inventore consequuntur dolores, excepturi magnam illum modi unde quis sit deserunt.</p>', 'адаптивный дизайн', 'Адаптивный дизайн сайта и основные стратегии по его внедрению'),
-(2, 2, 'Советы по выравниванию иконок в тексте', 'Иконки сейчас очень популярны, они дополняют контент (в большинстве случаев). Но с другой стороны они могут доставить немало хлопот. Если вы определились с форматом (SVG или шрифты-иконки?) и создали сами иконки, все равно по мере разработки будут всплыва', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia optio odit unde quam dolore vel vitae in! Obcaecati velit rem alias exercitationem error eveniet autem, voluptatibus esse ab placeat blanditiis omnis! Necessitatibus, officia velit, laboriosam deleniti quis aperiam? Nesciunt inventore consequuntur dolores, excepturi magnam illum modi unde quis sit deserunt.</p>', 'ключевики', 'мета-описание'),
-(3, 1, 'Редко используемые селекторы JQuery', 'Селекторы в JQuery играют главенствующую роль. Большинство методов в JQuery работают только на каких-то элементах, поэтому перед их использованием необходимо выбрать какой-либо тег. К примеру, чтобы прикрепить событие click к кнопке, эту кнопку сначала не', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia optio odit unde quam dolore vel vitae in! Obcaecati velit rem alias exercitationem error eveniet autem, voluptatibus esse ab placeat blanditiis omnis! Necessitatibus, officia velit, laboriosam deleniti quis aperiam? Nesciunt inventore consequuntur dolores, excepturi magnam illum modi unde quis sit deserunt.</p>', NULL, NULL),
-(4, 4, 'Тестовый пост', 'lorem ipsum...', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia optio odit unde quam dolore vel vitae in! Obcaecati velit rem alias exercitationem error eveniet autem, voluptatibus esse ab placeat blanditiis omnis! Necessitatibus, officia velit, laboriosam deleniti quis aperiam? Nesciunt inventore consequuntur dolores, excepturi magnam illum modi unde quis sit deserunt.</p>', '', ''),
-(5, 4, 'Тестовый пост 2', 'Краткое описание статьи \"Тестовый пост\"', '42342', '', '');
+                                                                                                     (1, 2, 'Адаптивный дизайн сайта и основные стратегии по его внедрению', 'Адаптивный дизайн сайта — это совершенно новый подход к дизайну, который привлекает к себе все больше внимания, но, учитывая, насколько сильно он отличается от традиционных методов разработки, вначале он может показаться заоблачно сложным для начинающих в', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia optio odit unde quam dolore vel vitae in! Obcaecati velit rem alias exercitationem error eveniet autem, voluptatibus esse ab placeat blanditiis omnis! Necessitatibus, officia velit, laboriosam deleniti quis aperiam? Nesciunt inventore consequuntur dolores, excepturi magnam illum modi unde quis sit deserunt.</p>', 'адаптивный дизайн', 'Адаптивный дизайн сайта и основные стратегии по его внедрению'),
+                                                                                                     (2, 2, 'Советы по выравниванию иконок в тексте', 'Иконки сейчас очень популярны, они дополняют контент (в большинстве случаев). Но с другой стороны они могут доставить немало хлопот. Если вы определились с форматом (SVG или шрифты-иконки?) и создали сами иконки, все равно по мере разработки будут всплыва', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia optio odit unde quam dolore vel vitae in! Obcaecati velit rem alias exercitationem error eveniet autem, voluptatibus esse ab placeat blanditiis omnis! Necessitatibus, officia velit, laboriosam deleniti quis aperiam? Nesciunt inventore consequuntur dolores, excepturi magnam illum modi unde quis sit deserunt.</p>', 'ключевики', 'мета-описание'),
+                                                                                                     (3, 1, 'Редко используемые селекторы JQuery', 'Селекторы в JQuery играют главенствующую роль. Большинство методов в JQuery работают только на каких-то элементах, поэтому перед их использованием необходимо выбрать какой-либо тег. К примеру, чтобы прикрепить событие click к кнопке, эту кнопку сначала не', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia optio odit unde quam dolore vel vitae in! Obcaecati velit rem alias exercitationem error eveniet autem, voluptatibus esse ab placeat blanditiis omnis! Necessitatibus, officia velit, laboriosam deleniti quis aperiam? Nesciunt inventore consequuntur dolores, excepturi magnam illum modi unde quis sit deserunt.</p>', NULL, NULL),
+                                                                                                     (4, 4, 'Тестовый пост', 'lorem ipsum...', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia optio odit unde quam dolore vel vitae in! Obcaecati velit rem alias exercitationem error eveniet autem, voluptatibus esse ab placeat blanditiis omnis! Necessitatibus, officia velit, laboriosam deleniti quis aperiam? Nesciunt inventore consequuntur dolores, excepturi magnam illum modi unde quis sit deserunt.</p>', '', ''),
+                                                                                                     (5, 4, 'Тестовый пост 2', 'Краткое описание статьи \"Тестовый пост\"', '42342', '', '');
 
 --
 -- Индексы сохранённых таблиц
 --
 
 --
+-- Индексы таблицы `categories`
+--
+ALTER TABLE `categories`
+    ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `category`
 --
 ALTER TABLE `category`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `posts`
 --
 ALTER TABLE `posts`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц
 --
 
 --
+-- AUTO_INCREMENT для таблицы `categories`
+--
+ALTER TABLE `categories`
+    MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1001;
+
+--
 -- AUTO_INCREMENT для таблицы `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+    MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
