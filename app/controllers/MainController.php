@@ -14,30 +14,11 @@ class MainController extends AppController
 
     public function indexAction()
     {
-
-        //App::$app->getList();
-        //\R::fancyDebug(true);
         $model = new Main;
-        $posts = App::$app->cache->get('posts');
 
-        if (!$posts) {
-            $posts = \R::findAll('posts');
-
-            App::$app->cache->set('posts', $posts);
-            //App::$app->cache->set('posts', $posts, 3600 * 24);
-        }
-
-
-
-
-
-
-        //echo date('Y-m-d H:i:s', time());
-        //echo '<br>';
-        //echo date('Y-m-d H:i:s', 1533121292);
+        $posts = \R::findAll('posts');
 
         $menu = $this->menu;
-
 
         $title = 'Page title';
 
@@ -49,7 +30,13 @@ class MainController extends AppController
 
     public function testAction()
     {
-        $this->layout = 'test';
+        if ($this->isAjax()) {
+            echo 111;
+            die;
+        }
+        echo 222;
+
+        //$this->layout = 'test';
     }
 
 }

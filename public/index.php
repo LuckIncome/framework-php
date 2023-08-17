@@ -16,10 +16,6 @@ define('CACHE', dirname(__DIR__) . '/tmp/cache');
 define('LAYOUT', 'default');
 
 require __DIR__ . '/../vendor/libs/functions.php';
-//require LIBS . '/rb.php';
-//$db = require ROOT . '/config/config_db.php';
-//\R::setup($db['dsn'], $db['user'], $db['pass']);
-//debug($posts = \R::findAll('posts'));
 
 spl_autoload_register(function($class) {
     $file = ROOT . '/' . str_replace('\\', '/', $class) . '.php';
