@@ -1,9 +1,10 @@
 <?php
 
-namespace vendor\libs;
+namespace fw\libs;
 
 class Cache
 {
+
     public function __construct()
     {
 
@@ -43,4 +44,5 @@ class Cache
             unlink($file);
         }
     }
+
 }

@@ -3,18 +3,18 @@
 
     </div>
     <button class="btn btn-info mb-5" id="send">Кнопка</button>
-    <?php new \vendor\widgets\menu\Menu(
-        [
-            //'tpl' => WWW . '/menu/select.php',
-            'container' => 'ul',
-            'class' => 'list',
-            'table' => 'categories',
-            'cache' => 60,
-            'cacheKey' => 'menu_ul'
-        ]
-    );?>
+    <?php /*new \fw\widgets\menu\Menu(
+    [
+      //'tpl' => WWW . '/menu/select.php',
+      'container' => 'ul',
+      'class' => 'list',
+      'table' => 'categories',
+      'cache' => 60,
+      'cacheKey' => 'menu_ul'
+    ]
+  );*/?>
 
-    <?php new \vendor\widgets\menu\Menu(
+    <?php new \fw\widgets\menu\Menu(
         [
             'tpl' => WWW . '/menu/select.php',
             'container' => 'select',
