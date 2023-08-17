@@ -1,12 +1,10 @@
 <?php
 
-// включаем показ всех ошибок
-error_reporting(-1);
-
 use \vendor\core\Router;
 
 $query = rtrim($_SERVER['QUERY_STRING'], '/');
 
+define("DEBUG", 0);
 define('WWW', __DIR__);
 define('CORE', dirname(__DIR__) . '/vendor/core');
 define('ROOT', dirname(__DIR__));
@@ -16,6 +14,9 @@ define('CACHE', dirname(__DIR__) . '/tmp/cache');
 define('LAYOUT', 'default');
 
 require __DIR__ . '/../vendor/libs/functions.php';
+
+// gzip сжатие
+//include __DIR__ . '/../vendor/libs/zg.php';
 
 spl_autoload_register(function($class) {
     $file = ROOT . '/' . str_replace('\\', '/', $class) . '.php';
