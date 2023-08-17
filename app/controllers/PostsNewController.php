@@ -4,23 +4,15 @@ namespace app\controllers;
 
 class PostsNewController extends AppController
 {
-    public function indexAction()
+    public function __construct()
     {
-        echo "PostsNew::index";
+        echo "PostsNew::__constructor";
     }
 
     public function testAction()
     {
-        echo "PostsNew::test";
+        echo 'PostsNews::test';
     }
 
-    public function testPageAction()
-    {
-        echo "PostsNew::testPage";
-    }
 
-    public function before()
-    {
-        echo "PostsNew::before";
-    }
 }

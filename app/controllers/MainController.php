@@ -4,6 +4,7 @@ namespace app\controllers;
 
 
 use app\models\Main;
+use vendor\core\App;
 
 class MainController extends AppController
 {
@@ -14,16 +15,41 @@ class MainController extends AppController
     public function indexAction()
     {
 
+        //App::$app->getList();
+        //\R::fancyDebug(true);
         $model = new Main;
+        $posts = App::$app->cache->get('posts');
 
-        //$res = $model->query("CREATE TABLE posts SELECT * FROM yiitest.posts");
+        if (!$posts) {
+            $posts = \R::findAll('posts');
 
-        $posts = $model->findAll();
+            App::$app->cache->set('posts', $posts);
+            //App::$app->cache->set('posts', $posts, 3600 * 24);
+        }
 
-        //debug($posts);
+
+
+
+
+
+        //echo date('Y-m-d H:i:s', time());
+        //echo '<br>';
+        //echo date('Y-m-d H:i:s', 1533121292);
+
+        $menu = $this->menu;
+
 
         $title = 'Page title';
 
-        $this->set(compact('title','posts'));
+        $this->setMeta('Главная страница', 'Описание главной страницы', 'Ключевые слова главной страницы');
+        $meta = $this->meta;
+
+        $this->set(compact('title','posts', 'menu', 'meta'));
     }
+
+    public function testAction()
+    {
+        $this->layout = 'test';
+    }
+
 }

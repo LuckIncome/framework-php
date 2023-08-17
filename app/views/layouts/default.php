@@ -5,12 +5,29 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Main</title>
+    <title><?php echo $meta['title']; ?></title>
+    <meta name="keywords" content="<?php echo $meta['keywords']; ?>"/>
+    <meta name="description" content="<?php echo $meta['desc']; ?>"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
 </head>
 <body>
-    <h1>Main</h1>
-    <?=$content?>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="nav nav-pills flex-column flex-sm-row">
+                    <?php if(!empty($menu)) {?>
+                        <?php foreach ($menu as $list) {?>
+                            <a class="flex-sm-fill text-sm-center nav-link" href="#"><?php echo $list->title; ?></a>
+                        <?php }?>
+                    <?php }?>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <?php echo $content; ?>
+
+    <p><?php //debug(\vendor\core\Db::$countSql); ?></p>
+    <p><?php //debug(\vendor\core\Db::$queries); ?></p>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>

@@ -2,13 +2,18 @@
 
 namespace app\controllers;
 
-class PageController extends \vendor\core\base\Controller
+
+
+class PageController extends AppController
 {
     public function viewAction()
     {
-        debug($this->route);
-        debug($_GET);
-        echo $_GET['page'];
-        echo "Posts::view";
+        //debug($this->route);
+        $menu = $this->menu;
+
+        $title = 'Страница';
+
+        $this->set(compact('title','menu'));
+
     }
 }
