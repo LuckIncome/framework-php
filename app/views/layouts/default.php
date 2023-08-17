@@ -11,6 +11,23 @@
 </head>
 <body>
     <div class="container">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a href="/" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="/admin" class="nav-link">Admin</a>
+            </li>
+            <li class="nav-item">
+                <a href="/user/signup" class="nav-link">SignUp</a>
+            </li>
+            <li class="nav-item">
+                <a href="/user/login" class="nav-link">Login</a>
+            </li>
+            <li class="nav-item">
+                <a href="/user/logout" class="nav-link">Logout</a>
+            </li>
+        </ul>
         <div class="row">
             <div class="col-md-12">
                 <nav class="nav nav-pills flex-column flex-sm-row">
