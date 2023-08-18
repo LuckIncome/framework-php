@@ -4,7 +4,7 @@ new \fw\widgets\language\Language();
 <br>
 <br>
 <div class="recent">
-    <h3>RECENT POSTS</h3>
+    <h3><?php echo __('recent_posts');?></h3>
     <ul>
         <li><a href="#">Aliquam tincidunt mauris</a></li>
         <li><a href="#">Vestibulum auctor dapibus  lipsum</a></li>
