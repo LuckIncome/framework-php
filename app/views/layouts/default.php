@@ -50,6 +50,9 @@
             <?php echo $_SESSION['success']; unset($_SESSION['success']); ?>
         </div>
     <?php } ?>
+
+    <?php debug($_SESSION); ?>
+
     <?php echo $content; ?>
 
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
