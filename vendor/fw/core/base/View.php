@@ -44,6 +44,9 @@ class View
 
     public function render($vars)
     {
+
+        $this->route['prefix'] = str_replace('\\', '/', $this->route['prefix']);
+
         if (is_array($vars)) extract($vars);
 
         $file_view = APP . "/views/{$this->route['prefix']}{$this->route['controller']}/{$this->view}.php";
@@ -100,8 +103,8 @@ class View
     public static function getMeta()
     {
         echo '<title>' . self::$meta['title'] . '</title>
-    <meta name="description" content="'. self::$meta['desc'] .'">
-    <meta name="keywords" content="'. self::$meta['keywords'] .'">';
+        <meta name="description" content="'. self::$meta['desc'] .'">
+        <meta name="keywords" content="'. self::$meta['keywords'] .'">';
     }
 
     // устанавливает мета данные
